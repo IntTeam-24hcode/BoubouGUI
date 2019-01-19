@@ -16,19 +16,21 @@ Blockly.Constants.Text.HUE = 160;
 Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
   // Block for text value
   {
-    "type": "text",
-    "message0": "%1",
+    "type": "changerCouleur",
+    "message0": "Changer couleur de %1 en %2",
     "args0": [{
+      "type": "field_number",
+      "name": "ID",
+      "check": "Number",
+      "value": 0
+    },
+    {
       "type": "field_input",
-      "name": "TEXT",
+      "name": "COULEUR",
+      "check": "String",
       "text": ""
     }],
-    "output": "String",
     "colour": "%{BKY_TEXTS_HUE}",
     "helpUrl": "%{BKY_TEXT_TEXT_HELPURL}",
     "tooltip": "%{BKY_TEXT_TEXT_TOOLTIP}",
-    "extensions": [
-      "text_quotes",
-      "parent_tooltip_when_inline"
-    ]
   }])

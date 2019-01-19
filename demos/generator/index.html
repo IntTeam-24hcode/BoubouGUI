@@ -83,13 +83,14 @@
     </category>
     <category name="My function" colour="%{BKY_TEXTS_HUE}">
       <block type="text_print"></block>
-      <block type="myfunction"></block>
+      <block type="changerCouleur"></block>
     </category>
   </xml>
 
   </xml>
 
   <script>
+
     var demoWorkspace = Blockly.inject('blocklyDiv',
         {media: '../../media/',
          toolbox: document.getElementById('toolbox')});
@@ -106,12 +107,14 @@
     function runCode() {
       // Generate JavaScript code and run it.
       window.LoopTrap = 1000;
-      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+      Blockly.Python.INFINITE_LOOP_TRAP =
           'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.Python.workspaceToCode(demoWorkspace);
+      Blockly.Python.INFINITE_LOOP_TRAP = null;
       try {
-        eval(code);
+
+        file = fopen("c:\\MyFile.txt", 3);// opens the file for writing
+        fwrite(file, code);// str is the content that is to be written into the file.
       } catch (e) {
         alert(e);
       }
