@@ -4,9 +4,26 @@
   <meta charset="utf-8">
   <title>Blockly Demo: Generating JavaScript</title>
   <script src="../../blockly_compressed.js"></script>
-  <script src="../../blocks_compressed.js"></script>
-  <script src="../../javascript_compressed.js"></script>
-  <script src="../../msg/js/en.js"></script>
+  <script src="../../blocks/logic.js"></script>
+  <script src="../../blocks/loops.js"></script>
+  <script src="../../blocks/math.js"></script>
+  <script src="../../blocks/text.js"></script>
+  <script src="../../blocks/lists.js"></script>
+  <script src="../../blocks/colour.js"></script>
+  <script src="../../blocks/variables.js"></script>
+  <script src="../../blocks/procedures.js"></script>
+  <script src="../../blocks/nosFonctions.js"></script>
+  <script src="../../generators/python.js"></script>
+  <script src="../../generators/python/logic.js"></script>
+  <script src="../../generators/python/loops.js"></script>
+  <script src="../../generators/python/math.js"></script>
+  <script src="../../generators/python/text.js"></script>
+  <script src="../../generators/python/lists.js"></script>
+  <script src="../../generators/python/colour.js"></script>
+  <script src="../../generators/python/variables.js"></script>
+  <script src="../../generators/python/nosFonctions.js"></script>
+  <script src="../../generators/python/procedures.js"></script>
+  <script src="../../msg/js/fr.js"></script>
   <style>
     body {
       background-color: #fff;
@@ -64,55 +81,12 @@
       <block type="text_length"></block>
       <block type="text_print"></block>
     </category>
+    <category name="My function" colour="%{BKY_TEXTS_HUE}">
+      <block type="text_print"></block>
+      <block type="myfunction"></block>
+    </category>
   </xml>
 
-  <xml id="startBlocks" style="display: none">
-    <block type="controls_if" inline="false" x="20" y="20">
-      <mutation else="1"></mutation>
-      <value name="IF0">
-        <block type="logic_compare" inline="true">
-          <field name="OP">EQ</field>
-          <value name="A">
-            <block type="math_arithmetic" inline="true">
-              <field name="OP">MULTIPLY</field>
-              <value name="A">
-                <block type="math_number">
-                  <field name="NUM">6</field>
-                </block>
-              </value>
-              <value name="B">
-                <block type="math_number">
-                  <field name="NUM">7</field>
-                </block>
-              </value>
-            </block>
-          </value>
-          <value name="B">
-            <block type="math_number">
-              <field name="NUM">42</field>
-            </block>
-          </value>
-        </block>
-      </value>
-      <statement name="DO0">
-        <block type="text_print" inline="false">
-          <value name="TEXT">
-            <block type="text">
-              <field name="TEXT">Don't panic</field>
-            </block>
-          </value>
-        </block>
-      </statement>
-      <statement name="ELSE">
-        <block type="text_print" inline="false">
-          <value name="TEXT">
-            <block type="text">
-              <field name="TEXT">Panic</field>
-            </block>
-          </value>
-        </block>
-      </statement>
-    </block>
   </xml>
 
   <script>
@@ -124,8 +98,8 @@
 
     function showCode() {
       // Generate JavaScript code and display it.
-      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      var code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+      Blockly.Python.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.Python.workspaceToCode(demoWorkspace);
       alert(code);
     }
 
