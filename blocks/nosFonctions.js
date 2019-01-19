@@ -22,7 +22,9 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "type": "field_colour",
       "name": "COULEUR",
       "text": ""
-    }]
+    }],
+    "previousStatement": null,
+    "nextStatement": null
   },
   {
     "type": "changerCouleur",
@@ -37,7 +39,10 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "type": "field_colour",
       "name": "COULEUR",
       "text": ""
-    }]
+    }],
+    "previousStatement": null,
+    "nextStatement": null
+  
   },
   {
     "type": "allumer",
@@ -74,9 +79,9 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "message0": "Animer tous",
   }
   /**
-   * 
+   *
    * CAPTEUR BP
-   * 
+   *
    */,
   {
     "type": "capteur_bp_status",
@@ -150,7 +155,7 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "type": "presence/state",
     "message0": "Etat détection",
     "output": "String"
-  } 
+  }
     /**
    * Capteur de distance
    */
@@ -159,7 +164,7 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "type": "distance/value",
     "message0": "Etat détection",
     "output": "Number"
-  } 
+  }
   /**
    * Capteur atmosphérique
    */
@@ -168,25 +173,25 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "type": "atmosphere/temperature",
     "message0": "Temperature",
     "output": "Number"
-  } 
+  }
   ,
   {
     "type": "atmosphere/pression",
     "message0": "Pression",
     "output": "Number"
-  } 
+  }
   ,
   {
     "type": "atmosphere/humidite",
     "message0": "Humidite Absolu",
     "output": "Number"
-  } 
+  }
   ,
   {
     "type": "atmosphere/humidite_absolue",
     "message0": "Humidite Absolu",
     "output": "Number"
-  }   
+  }
   /**
   * musique
   */

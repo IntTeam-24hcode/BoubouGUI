@@ -9,44 +9,49 @@ goog.require('Blockly.Python');
 
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? "["+result[1]+","+result[2]+","+result[3]+"]": null;
+    return result ? "["+parseInt(result[1],16)+","+parseInt(result[2],16)+","+parseInt(result[3],16)+"]": null;
 }
 
 Blockly.Python['changerCouleurTous'] = function(block) {
-    var code = "changerCouleurTous("+hexToRgb(block.getFieldValue('COULEUR'))+")";
-    return code;
+  var code = "comBlue= { 'command' : 'fill', 'rgb' :"+hexToRgb(block.getFieldValue('COULEUR'))+"}"+"\n"
+               +"client.publish('laumio/all/json', json.dumps(comBlue))\n"
+
+  return code;
    };
 
 
 Blockly.Python['changerCouleur'] = function(block) {
- var code = "changerCouleur("+block.getFieldValue('ID')+","+hexToRgb(block.getFieldValue('COULEUR'))+")";
+ var code = "comBlue= { 'command' : 'fill', 'rgb' :"+hexToRgb(block.getFieldValue('COULEUR'))+"}"+"\n"
+              +"client.publish('laumio/'+lampes["+block.getFieldValue('ID')+"]+'/json', json.dumps(comBlue))\n"
+
  return code;
 };
 
 
 Blockly.Python['eteindre'] = function(block) {
-    var code = "changerCouleur("+block.getFieldValue('ID')+",[0,0,0])";
-    return code;
+  var code = "comBlue= { 'command' : 'fill', 'rgb' :[0,0,0]}"+"\n"
+               +"client.publish('laumio/'+lampes["+block.getFieldValue('ID')+"]+'/json', json.dumps(comBlue))\n"
+
+  return code;
    };
+   Blockly.Python['allumer'] = function(block) {
+     var code = "comBlue= { 'command' : 'fill', 'rgb' :[255,255,255]}"+"\n"
+                  +"client.publish('laumio/'+lampes["+block.getFieldValue('ID')+"]+'/json', json.dumps(comBlue))\n"
 
-Blockly.Python['allumer'] = function(block) {
-    var code = "changerCouleur("+block.getFieldValue('ID')+",[255,255,255])";
-    return code;
-   };
-   
-Blockly.Python['animer'] = function(block) {
-    var code = "animer("+block.getFieldValue('ID')+")";
-    return code;
+     return code;
+      };
+
+
+Blockly.Python['Animer'] = function(block) {
+  var code = "comBlue= { 'command' : 'animate_rainbow'}"+"\n"
+               +"client.publish('laumio/'+lampes["+block.getFieldValue('ID')+"]+'/json', json.dumps(comBlue))\n"
+
+  return code;
 };
 
-Blockly.Python['animerTous'] = function(block) {
-    var code = "animerTous()";
-    return code;
-};
+Blockly.Python['AnimerTous'] = function(block) {
+  var code = "comBlue= { 'command' : 'animate_rainbow'}"+"\n"
+               +"client.publish('laumio/all/json', json.dumps(comBlue))\n"
 
-Blockly.Python['capteur_bp_status'] = function(block) {
-    var code = "getStatusBP()";
-    return code;
+  return code;
 };
-
-   
