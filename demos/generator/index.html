@@ -81,9 +81,35 @@
       <block type="text_length"></block>
       <block type="text_print"></block>
     </category>
-    <category name="My function" colour="%{BKY_TEXTS_HUE}">
-      <block type="text_print"></block>
+    <category name="Changement des couleurs" colour="%{BKY_TEXTS_HUE}">
+      <block type="changerCouleurTous"></block>
       <block type="changerCouleur"></block>
+      <block type="allumer"></block>
+      <block type="eteindre"></block>
+      <block type="Animer"></block>
+      <block type="AnimerTous"></block>
+    </category>
+    <category name="Bouton Poussoir" colour="%{BKY_TEXTS_HUE}">
+      <block type="capteur_bp_status"></block>
+      <block type="capteur_bp/switch/ledX/state"></block>
+      <block type="capteur_bp/binary_sensor/bpX/state"></block>
+      <block type="capteur_bp/switch/ledX/command/allumer"></block>
+      <block type="capteur_bp/switch/ledX/command/eteindre"></block>
+    </category>
+    <category name="Télécommande infrarouge" colour="%{BKY_TEXTS_HUE}">
+      <block type="remote/NOM_DE_LA_TOUCHE/state"></block>
+    </category>
+    <category name="Capteur détecteur de présence" colour="%{BKY_TEXTS_HUE}">
+      <block type="presence/state"></block>
+    </category>    
+    <category name="Capteur de distance" colour="%{BKY_TEXTS_HUE}">
+      <block type="distance/value"></block>
+    </category>
+    <category name="Capteur atmosphérique" colour="%{BKY_TEXTS_HUE}">
+      <block type="atmosphere/temperature"></block>
+      <block type="atmosphere/pression"></block>
+      <block type="atmosphere/humidite"></block>
+      <block type="atmosphere/humidite_absolue"></block>
     </category>
   </xml>
 
