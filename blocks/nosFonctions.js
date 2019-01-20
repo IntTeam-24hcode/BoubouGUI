@@ -114,8 +114,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
    *
    */,
   {
-    "type": "capteur_bp_status",
-    "message0": "Statut Capteur Btns",
+    "type": "Message",
+    "message0" : "Message",
     "output": "String"
   },
   {
@@ -130,8 +130,8 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     }]
   },
   {
-    "type": "capteur_bp/binary_sensor/bpX/state",
-    "message0": "Etat bouton %1 ",
+    "type": "Etatbp",
+    "message0": "Changement état bouton %1 : %2",
     "output": "String",
     "args0": [{
       "type": "field_number",
