@@ -55,3 +55,8 @@ Blockly.Python['AnimerTous'] = function(block) {
 
   return code;
 };
+
+Blockly.Python['capteur_bp/switch/ledX/state'] = function(block) {
+  var code = "getLEDState(client," + block.getFieldValue('ID') + ")"
+  return code;
+};
