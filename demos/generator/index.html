@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Blockly Demo: Generating JavaScript</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <script src="../../blockly_compressed.js"></script>
   <script src="../../blocks/logic.js"></script>
   <script src="../../blocks/loops.js"></script>
@@ -24,6 +25,9 @@
   <script src="../../generators/python/nosFonctions.js"></script>
   <script src="../../generators/python/procedures.js"></script>
   <script src="../../msg/js/fr.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   <style>
     body {
       background-color: #fff;
@@ -33,24 +37,86 @@
       font-weight: normal;
       font-size: 140%;
     }
+    audio{
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <h1><a href="https://developers.google.com/blockly/">Blockly</a> &gt;
-    <a href="../index.html">Demos</a> &gt; Generating JavaScript</h1>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">IntTeam</a>
 
-  <p>This is a simple demo of generating code from blocks and running
-  the code in a sandboxed JavaScript interpreter.</p>
+        <div class=" my-2 my-lg-0" id="navbarText">
+          <img id="haum" src="haum.png" width="64"/>
+        </div>
+      </nav>
+      <br/>
+  <div class="container">
+    <div id="blocklyDiv" style="height: 600px; width: 100%;"></div>
+  </div>
+  <div class="container justify-content-center">
+    <center>
+      <br/>
+      <button onclick="showCode()"  id="showcode" type="button" class="btn btn-secondary">Show JavaScript</button>
+      <button onclick="runCode()"  id="runcode"  type="button" class="btn btn-primary">Run JavaScript</button>
+    </center>
+<center>
 
-  <p>&rarr; More info on <a href="https://developers.google.com/blockly/guides/configure/web/code-generators">Code Generators</a> and <a href="https://developers.google.com/blockly/guides/app-integration/running-javascript">Running JavaScript</a>.</p>
+<audio controls id="player1">
+    <source src="1.mp3">
+  </audio>
+  
+  <audio controls id="player2">
+    <source src="2.mp3">
+  </audio>
+  <audio controls id="player3">
+      <source src="3.mp3">
+    </audio>
 
-  <p>
-    <button onclick="showCode()">Show JavaScript</button>
-    <button onclick="runCode()">Run JavaScript</button>
-  </p>
+    <script >
+  document.getElementById('haum').addEventListener('click', player3);
+	document.getElementById('showcode').addEventListener('click', player2);
+	document.getElementById('runcode').addEventListener('click', player1);
+      var audios = [document.getElementById('player1'), document.getElementById('player2'),document.getElementById('player3')];
+      function pauseAll(){
+          audios[0].pause();
+          audios[1].pause();
+          audios[2].pause();
+        
+      }
 
-  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+    function player1() {
+	    var audio = document.getElementById('player1');
+	    if (audio.paused) {
+        pauseAll();
+	        audio.play();
+	    }else{
+	        audio.pause();
+	    }
+	}
+	function player2() {
 
+	    var audio2 = document.getElementById('player2');
+	    if (audio2.paused) {
+        pauseAll();
+	        audio2.play();
+	    }else{
+	        audio2.pause();
+	    }
+	}
+  function player3() {
+  
+	    var audio2 = document.getElementById('player3');
+	    if (audio2.paused) { 
+         pauseAll();
+	        audio2.play();
+	    }else{
+	        audio2.pause();
+	    }
+	}
+  </script>
+  </center>
+  </div>
   <xml id="toolbox" style="display: none">
     <category name="Logic" colour="%{BKY_LOGIC_HUE}">
       <block type="controls_if"></block>
