@@ -119,7 +119,7 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "output": "String"
   },
   {
-    "type": "capteur_bp/switch/ledX/state",
+    "type": "EtatLED",
     "message0": "Etat led %1",
     "output": "String",
     "args0": [{
