@@ -65,6 +65,36 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     }]
   },
   {
+    "type": "Pluie",
+    "message0": "Pluie en %1 pendant %2 s",
+    "args0": [{
+      "type": "field_number",
+      "name": "ID",
+      "check": "Number",
+      "value": 0
+    }, {
+      "type": "field_number",
+      "name": "TIME",
+      "check": "Number",
+      "value": 0
+    }]
+  },
+  {
+    "type": "Spiral",
+    "message0": "Spiral en %1 pendant %2 s",
+    "args0": [{
+      "type": "field_number",
+      "name": "ID",
+      "check": "Number",
+      "value": 0
+    }, {
+      "type": "field_number",
+      "name": "TIME",
+      "check": "Number",
+      "value": 0
+    }]
+  },
+  {
     "type": "Animer",
     "message0": "Animer %1",
     "args0": [{

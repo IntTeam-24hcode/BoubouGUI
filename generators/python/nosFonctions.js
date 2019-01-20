@@ -41,6 +41,15 @@ Blockly.Python['eteindre'] = function(block) {
      return code;
       };
 
+Blockly.Python['Pluie'] = function(block) {
+  var code = "pluie(client, lampes[" + block.getFieldValue('ID') + "], " + block.getFieldValue('TIME') + ")\n"
+  return code;
+};
+
+Blockly.Python['Spiral'] = function(block) {
+  var code = "spiral(client, lampes[" + block.getFieldValue('ID') + "], " + block.getFieldValue('TIME') + ")\n"
+  return code;
+};
 
 Blockly.Python['Animer'] = function(block) {
   var code = "comBlue= { 'command' : 'animate_rainbow'}"+"\n"
