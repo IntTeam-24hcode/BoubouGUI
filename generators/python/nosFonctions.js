@@ -42,12 +42,12 @@ Blockly.Python['eteindre'] = function(block) {
       };
 
 Blockly.Python['Pluie'] = function(block) {
-  var code = "pluie(client, lampes[" + block.getFieldValue('ID') + "], " + block.getFieldValue('TIME') + ")\n"
+  var code = "pluie(client, lampes[" + block.getFieldValue('ID') + "], " + block.getFieldValue('TIME') + ")\n";
   return code;
 };
 
 Blockly.Python['Spiral'] = function(block) {
-  var code = "spiral(client, lampes[" + block.getFieldValue('ID') + "], " + block.getFieldValue('TIME') + ")\n"
+  var code = "spiral(client, lampes[" + block.getFieldValue('ID') + "], " + block.getFieldValue('TIME') + ")\n";
   return code;
 };
 
@@ -65,7 +65,7 @@ Blockly.Python['AnimerTous'] = function(block) {
   return code;
 };
 
-Blockly.Python['capteur_bp/switch/ledX/state'] = function(block) {
-  var code = "getLEDState(client," + block.getFieldValue('ID') + ")"
-  return code;
+Blockly.Python['EtatLED'] = function(block) {
+  var code = "getLEDState(client," + block.getFieldValue('ID') + ")";
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };

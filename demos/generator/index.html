@@ -43,6 +43,7 @@
   </style>
 </head>
 <body>
+
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="#">IntTeam</a>
 
@@ -84,6 +85,7 @@
           audios[2].pause();
         
       }
+
 
     function player1() {
 	    var audio = document.getElementById('player1');
@@ -161,7 +163,7 @@
     </category>
     <category name="Bouton Poussoir" colour="%{BKY_TEXTS_HUE}">
       <block type="capteur_bp_status"></block>
-      <block type="capteur_bp/switch/ledX/state"></block>
+      <block type="EtatLED"></block>
       <block type="capteur_bp/binary_sensor/bpX/state"></block>
       <block type="capteur_bp/switch/ledX/command/allumer"></block>
       <block type="capteur_bp/switch/ledX/command/eteindre"></block>
@@ -382,6 +384,7 @@ lampes = ["Laumio_1D9486", "Laumio_104A13", "Laumio_0FBFBF", "Laumio_104F03", "L
 
 
       code = code+Blockly.Python.workspaceToCode(demoWorkspace);
+      code = code + "\ntime.sleep(1)\n";
       Blockly.Python.INFINITE_LOOP_TRAP = null;
       try {
         fetch("http://127.0.0.1:5000/output",{
