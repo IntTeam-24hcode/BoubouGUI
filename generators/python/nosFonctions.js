@@ -16,7 +16,7 @@ var ntab = 0;
 function indent(line) {
   var res = line;
   for(var i = 0; i < ntab; i++)
-    res = "\t" + line;
+    res = "  " + line;
   return res + "\n";
 }
 
@@ -67,6 +67,11 @@ Blockly.Python['AnimerTous'] = function(block) {
   return code;
 };
 
+Blockly.Python['Pause'] = function(block) {
+  var code = indent("time.sleep(" + block.getFieldValue('ID') + ")");
+  return code;
+};
+
 Blockly.Python['Message'] = function(block) {
   var code = "s";
   return [code, Blockly.Python.ORDER_ATOMIC];
@@ -77,4 +82,11 @@ Blockly.Python['EtatLED'] = function(block) {
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
-Blockly.Python['']
+Blockly.Python['Etatbp'] = function(block) {
+  var code = indent("def fun(client, s):");
+  ntab += 1;
+  code += Blockly.Python.statementToCode(block, 'CODE') || Blockly.Python.PASS;
+  ntab -= 1;
+  code += indent("funBP[" + block.getFieldValue('ID') + "] = fun");
+  return code
+}

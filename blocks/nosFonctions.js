@@ -52,7 +52,9 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "name": "ID",
       "check": "Number",
       "value": 0
-    }]
+    }],
+    "previousStatement": null,
+    "nextStatement": null
   },
   {
     "type": "eteindre",
@@ -62,7 +64,9 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "name": "ID",
       "check": "Number",
       "value": 0
-    }]
+    }],
+    "previousStatement": null,
+    "nextStatement": null
   },
   {
     "type": "Pluie",
@@ -77,7 +81,9 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "name": "TIME",
       "check": "Number",
       "value": 0
-    }]
+    }],
+    "previousStatement": null,
+    "nextStatement": null
   },
   {
     "type": "Spiral",
@@ -92,7 +98,9 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "name": "TIME",
       "check": "Number",
       "value": 0
-    }]
+    }],
+    "previousStatement": null,
+    "nextStatement": null
   },
   {
     "type": "Animer",
@@ -102,7 +110,9 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "name": "ID",
       "check": "Number",
       "value": 0
-    }]
+    }],
+    "previousStatement": null,
+    "nextStatement": null
   },
   {
     "type": "AnimerTous",
@@ -119,6 +129,18 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "output": "String"
   },
   {
+    "type": "Pause",
+    "message0" : "Pause de %1 s",
+    "args0": [{
+      "type": "field_number",
+      "name": "ID",
+      "check": "Number",
+      "value": 1
+    }],
+    "previousStatement": null,
+    "nextStatement": null
+  },
+  {
     "type": "EtatLED",
     "message0": "Etat led %1",
     "output": "String",
@@ -126,19 +148,25 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
       "type": "field_number",
       "name": "ID",
       "check": "Number",
-      "value": 0
+      "value": 1
     }]
   },
   {
     "type": "Etatbp",
     "message0": "Changement état bouton %1 : %2",
-    "output": "String",
     "args0": [{
       "type": "field_number",
       "name": "ID",
       "check": "Number",
-      "value": 0
-    }]
+      "value": 1
+    },
+    {
+      "type": "input_statement",
+      "name": "CODE"
+    }
+    ],
+    "previousStatement": null,
+    "nextStatement": null,
   },
   {
     "type": "capteur_bp/switch/ledX/command/allumer",
