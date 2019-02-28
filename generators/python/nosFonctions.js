@@ -78,7 +78,7 @@ Blockly.Python['Message'] = function(block) {
 };
 
 Blockly.Python['EtatLED'] = function(block) {
-  var code = "getLEDState(client," + block.getFieldValue('ID') + ")";
+  var code = "getLEDState(" + block.getFieldValue('ID') + ")";
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
 

@@ -363,38 +363,17 @@
     function runCode() {
       // Generate JavaScript code and run it.
       window.LoopTrap = 1000;
-      Blockly.Python.INFINITE_LOOP_TRAP =
-          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-      var code  = `
-import paho.mqtt.client as mqtt
-import time
-import json
-from anim import *
+      /*Blockly.Python.INFINITE_LOOP_TRAP =
+          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';*/
+      
 
-client = mqtt.Client()
-client.on_message = on_message
-#client.connect("mpd.lan")
-client.subscribe("laumio/status/advertise")
-for i in range(1, 5):
-  client.subscribe("capteur_bp/binary_sensor/bp{}/state".format(i))
-client.loop_start()
-client.publish("laumio/all/discover")
-lampes = ["Laumio_1D9486", "Laumio_104A13", "Laumio_0FBFBF", "Laumio_104F03", "Laumio_10508F", "Laumio_10805F",  "Laumio_CD0522", "Laumio_0FC168", "Laumio_D454DB", "Laumio_107DA8"]
-`;
-
-
-    code= code+  "\n"
-
-
-      code = code+Blockly.Python.workspaceToCode(demoWorkspace);
+      code = Blockly.Python.workspaceToCode(demoWorkspace);
       code = code + "\ntime.sleep(10)\n";
       Blockly.Python.INFINITE_LOOP_TRAP = null;
       try {
         fetch("http://127.0.0.1:5000/output",{
           body:  code,
             method:"POST"});
-
-                //eval(code);
       } catch (e) {
         alert(e);
       }
