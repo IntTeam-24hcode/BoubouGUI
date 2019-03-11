@@ -1,6 +1,6 @@
 from tkinter import *
 import json
-import random
+from random import *
 import time
 import paho.mqtt.client as mqtt
 
@@ -15,7 +15,7 @@ temperature = None
 humidite = None
 
 
-fenetre = Tk(screenName = "Simulateur", baseName = "Simulateur", className = "Simulateur")
+fenetre = Tk()
 canvas = Canvas(fenetre, width = 300, height = 300)
 
 lampe_1 = canvas.create_rectangle(0,0,100,100, fill = "yellow")
@@ -33,21 +33,23 @@ canvas.pack()
 def modifier_lampe(lampe, message) :
     message_decode = json.loads(message)
     commande = message_decode["command"]
-    if commande = "set_pixel" :
+    if commande == "set_pixel" :
         couleur = "#%02x%02x%02x" % (message_decode["rgb"][0], message_decode["rgb"][1], message_decode["rgb"][2])
         canvas.itemconfig(match_lampes[lampe], fill=couleur)
-    elif commande = "set_wipe" :
+    elif commande == "set_wipe" :
         couleur = "#%02x%02x%02x" % (message_decode["rgb"][0], message_decode["rgb"][1], message_decode["rgb"][2])
         canvas.itemconfig(match_lampes[lampe], fill=couleur)
-    elif commande = "animate_rainbow" :
+    elif commande == "animate_rainbow" :
         for i in range(20) :
             couleur = "#%02x%02x%02x" % (randint(0,255), randint(0,255), randint(0,255))
             canvas.itemconfig(match_lampes[lampe], fill=couleur)
-            time.sleep(0.2)
-    elif commande = "fill" :
+            time.sleep(0.02)
+    elif commande == "fill" :
         couleur = "#%02x%02x%02x" % (message_decode["rgb"][0], message_decode["rgb"][1], message_decode["rgb"][2])
         for lampe_p in lampes :
             canvas.itemconfig(match_lampes[lampe_p], fill=couleur)
+    else:
+        print("Comprends pas Bro")
 
 Connected = False
 
@@ -111,7 +113,7 @@ for i in range(4) :
     client.subscribe("capteur_bp/switch/led{}/state".format(i))
     print("capteur_bp/switch/led{}/state".format(i))
     while not needLEDState[i]:
-	time.sleep(0.02)
+	    time.sleep(0.02)
 
 client.subscribe("presence/state")
 
@@ -122,3 +124,5 @@ client.subscribe("atmosphere/humidite")
 for lampe in lampes :
     client.subscribe("laumio/"+lampe+"/json")
 client.subscribe("laumio/all/json")
+
+fenetre.mainloop()
