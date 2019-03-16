@@ -29,6 +29,7 @@ lampe_8 = canvas.create_rectangle(100,200,200,300, fill = "yellow")
 lampe_9 = canvas.create_rectangle(200,200,300,300, fill = "yellow")
 
 canvas.pack()
+value = DoubleVar()
 
 def modifier_lampe(lampe, message) :
     message_decode = json.loads(message)
@@ -43,6 +44,30 @@ def modifier_lampe(lampe, message) :
         for i in range(20) :
             couleur = "#%02x%02x%02x" % (randint(0,255), randint(0,255), randint(0,255))
             canvas.itemconfig(match_lampes[lampe], fill=couleur)
+            time.sleep(0.02)
+    elif commande == "fill" :
+        print("Yrepasseraparla")
+        couleur = "#%02x%02x%02x" % (message_decode["rgb"][0], message_decode["rgb"][1], message_decode["rgb"][2])
+        canvas.itemconfig(match_lampes[lampe], fill=couleur)
+    else:
+        print("Comprends pas Bro")
+
+def modifier_toute_lampe(message) :
+    message_decode = json.loads(message)
+    commande = message_decode["command"]
+    if commande == "set_pixel" :
+        couleur = "#%02x%02x%02x" % (message_decode["rgb"][0], message_decode["rgb"][1], message_decode["rgb"][2])
+        for lampe_p in lampes :
+            canvas.itemconfig(match_lampes[lampe_p], fill=couleur)
+    elif commande == "set_wipe" :
+        couleur = "#%02x%02x%02x" % (message_decode["rgb"][0], message_decode["rgb"][1], message_decode["rgb"][2])
+        for lampe_p in lampes :
+            canvas.itemconfig(match_lampes[lampe_p], fill=couleur)
+    elif commande == "animate_rainbow" :
+        for i in range(20) :
+            couleur = "#%02x%02x%02x" % (randint(0,255), randint(0,255), randint(0,255))
+            for lampe_p in lampes :
+                canvas.itemconfig(match_lampes[lampe_p], fill=couleur)
             time.sleep(0.02)
     elif commande == "fill" :
         couleur = "#%02x%02x%02x" % (message_decode["rgb"][0], message_decode["rgb"][1], message_decode["rgb"][2])
@@ -68,8 +93,11 @@ def on_message(client, userdata, msg):
     	if s != "discover" and (s not in laumios):
     	    laumios.add(s)
     elif msg.topic.startswith("laumio/all") :
-        for lampe in lampes :
-            modifier_lampe(lampe, s)
+        modifier_toute_lampe(s)
+    elif msg.topic.startswith("laumio/") :
+        lampe = msg.topic.split("/")[1]
+        print("Jerentreicilaumio/")
+        modifier_lampe(lampe, s)
     elif msg.topic.startswith("capteur_bp/switch/led") and msg.topic.endswith("/state"):
     	i = int(msg.topic[len("capteur_bp/switch/led")])
     	LEDState[i] = s
@@ -124,5 +152,15 @@ client.subscribe("atmosphere/humidite")
 for lampe in lampes :
     client.subscribe("laumio/"+lampe+"/json")
 client.subscribe("laumio/all/json")
+
+
+def changement_scale(val):
+    client.publish("atmosphere/temperature", val)
+    
+label = Label(fenetre, text="Température")
+label.pack()
+
+scale = Scale(fenetre, variable=value, command=changement_scale)
+scale.pack()
 
 fenetre.mainloop()

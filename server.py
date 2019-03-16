@@ -14,7 +14,7 @@ laumios = set()
 needLEDState = [False] * 4
 LEDState = [None] * 4
 funBP = [None] * 4
-
+temp = 0
 
 def on_connect(client, userdata, flags, rc):
  
@@ -43,14 +43,18 @@ def on_message(client, userdata, msg):
 		i = int(msg.topic[len("capteur_bp/binary_sensor/bp")])
 		if funBP[i] != None:
 			funBP[i](client, s)
+	elif msg.topic == "atmosphere/temperature":
+		global temp
+		temp = int(s)
 	else:
 		print("Not traited:", msg.topic, s)
 
 client = mqtt.Client()
-client.on_message = on_message
 broker_address= "localhost"  #Broker address
 port = 1883                         #Broker port
 client.on_connect= on_connect   
+
+client.on_message = on_message
 client.connect(broker_address)    
 
 client.loop_start()  
@@ -68,6 +72,7 @@ def getLEDState( i):
 
 
 client.subscribe("laumio/status/advertise")
+client.subscribe("atmosphere/temperature")
 for i in range(1, 5):
 	client.subscribe("capteur_bp/binary_sensor/bp{}/state".format(i))
 

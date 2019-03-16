@@ -89,4 +89,10 @@ Blockly.Python['Etatbp'] = function(block) {
   ntab -= 1;
   code += indent("funBP[" + block.getFieldValue('ID') + "] = fun");
   return code
-}
+};
+
+Blockly.Python['atmosphere/temperature'] = function(block) {
+  var code = "temp";
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+

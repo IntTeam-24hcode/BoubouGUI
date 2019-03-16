@@ -117,6 +117,9 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
   {
     "type": "AnimerTous",
     "message0": "Animer tous",
+
+    "previousStatement": null,
+    "nextStatement": null
   }
   /**
    *
